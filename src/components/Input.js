@@ -52,6 +52,7 @@ const Input = ({
       </View>
       {error && (
         <Text style={style.errorMsg}>
+          <Icon name='alert-circle'/>
           {error}
         </Text>
       )}
@@ -61,7 +62,8 @@ const Input = ({
 
 const style = StyleSheet.create({
   view: {
-    marginBottom: 20,
+    marginBottom: 5,
+    marginVertical: -18,
   },
   label: {
     marginVertical: 5,
@@ -69,25 +71,25 @@ const style = StyleSheet.create({
     color: COLORS.grey,
   },
   inputContainer: {
-    height: 55,
+    height: 51,
     backgroundColor: COLORS.light,
     flexDirection: 'row',
-    paddingHorizontal: 15,
+    paddingHorizontal: 14,
     borderWidth: 0.5,
     borderRadius: 10,
     opacity: 0.5,
   },
   icon: {
-    color: COLORS.darkBlue, 
+    color: COLORS.black, 
     fontSize: 22, 
     marginRight: 10,
   },
   textInput: {
     flex: 1,
-    color: COLORS.darkBlue, 
+    color: COLORS.black, 
   },
   eyePassword: {
-    color: COLORS.darkBlue, 
+    color: COLORS.black, 
     fontSize: 22,
   },
   errorMsg: {
