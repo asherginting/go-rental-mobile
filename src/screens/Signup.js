@@ -11,9 +11,9 @@ import {
   Alert,
 } from 'react-native';
 
-import COLORS from "../components/Colors";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import COLORS from "./src/components/Colors";
+import Button from "./src/components/Button";
+import Input from "./src/components/Input";
 
 const Signup = ({navigation}) => {
   // <View style={styles.container}>
@@ -136,7 +136,7 @@ const Signup = ({navigation}) => {
           />
           <Button title="Signup" onPress={validateForm} />
           <Text
-            onPress={() => navigation.navigate('LoginScreen')}
+            onPress={() => navigation.navigate('Login')}
             style={{
               color: COLORS.black,
               // fontWeight: 'bold',
