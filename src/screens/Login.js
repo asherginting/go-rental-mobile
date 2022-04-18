@@ -1,38 +1,26 @@
-import React, {useState} from "react";
 import {
+  View,
+  Text,
+  StyleSheet,
   ImageBackground,
   StatusBar,
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Keyboard,
   ScrollView,
-  Alert,
 } from 'react-native';
-
+import React from 'react';
 import COLORS from "../components/Colors";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import Input from '../components/Input';
+import Button from '../components/Button';
+import {useState} from 'react/cjs/react.development';
 
 const Login = ({navigation}) => {
-  // <View style={styles.container}>
-  //   <StatusBar translucent backgroundColor='transparent' />
-  //   <ImageBackground source={require('./src/assets/images/bg-signup.png')} resizeMode="cover" style={styles.image}>
-  //   </ImageBackground>
-  // </View>
-
   const [input, setInput] = useState({
     username: '',
-    email: '',
-    phone_number: '',
     password: '',
   });
 
   const [error, setError] = useState({});
 
   const validateForm = () => {
-    Keyboard.dismiss();
     let isValid = true;
   
     if (!input.username) {
@@ -68,20 +56,20 @@ const Login = ({navigation}) => {
   const handleError = (error, input) => {
     setError(prevState => ({...prevState, [input]: error}));
   };
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar translucent backgroundColor='transparent' />
-      <ImageBackground source={require('../assets/images/bg-login.png')} resizeMode="cover" style={styles.image}></ImageBackground>
-      <ScrollView
-        contentContainerStyle={{paddingTop: 50, paddingHorizontal: 29}}>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          LET'S EXPLORE
-        </Text>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          THE WORLD
-        </Text>
 
-        <View style={{color: COLORS.black}}>
+  return (
+      <ScrollView style={styles.scrollview}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <ImageBackground
+        source={require('../assets/images/bg-login.png')}
+        resizeMode="cover"
+        style={styles.image}>
+        <View style={styles.opacity}>
+          <View style={styles.header}>
+            <Text style={styles.head}>LET'S EXPLORE</Text>
+            <Text style={styles.head}>THE WORLD</Text>
+          </View>
+          <View style={{color: COLORS.white}}>
           <Input
             onChangeText={text => handleOnchange(text, 'username')}
             onFocus={() => handleError(null, 'username')}
@@ -89,7 +77,6 @@ const Login = ({navigation}) => {
             placeholder="Enter your Username"
             error={error.username}
           />
-
           <Input
             onChangeText={text => handleOnchange(text, 'password')}
             onFocus={() => handleError(null, 'password')}
@@ -98,30 +85,77 @@ const Login = ({navigation}) => {
             error={error.password}
             password
           />
-          <Text
-            onPress={() => navigation.navigate('Home')}
-            style={{
-              color: COLORS.black,
-              // fontWeight: 'bold',
-              textAlign: 'left',
-              fontSize: 16,
-            }}>
-            Forgot Password?
-          </Text>
+          <View style={styles.forgotText}>
+              <Text style={[styles.text, styles.linkForgot]}>Forgot Password? </Text>
+          </View>
+          <View style={styles.loginButton}>
           <Button title="Login" onPress={validateForm} />
+          </View>
+          <View style={styles.bottomText}>
+              <Text style={styles.text}>Don’t have account?</Text>
+              <Text style={[styles.text, styles.linkSignup]}> Sign up now</Text>
+          </View>
         </View>
+      </View>
+      </ImageBackground>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollview: {
+    height: '100%',
   },
   image: {
-    flex: 1,
-    justifyContent: "center",
+    height: '100%',
+  },
+  opacity: {
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 20,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  header: {
+    marginVertical: 170,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  head: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 35,
+  },
+  forgotText: {
+    flexDirection: 'row',
+    marginTop: 10,
+    // marginBottom: 220,
+  },
+  ['text']: {
+    color: '#fff',
+  },
+  loginButton: {
+    marginTop: 15,
+  },
+  bottomText: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 240,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  linkForgot: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
+    width: 130,
+    marginTop: 10,
+  },
+  linkSignup: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
+    width: 90,
+    fontWeight: 'bold',
   },
 });
 
