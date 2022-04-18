@@ -32,6 +32,7 @@ const Input = ({
           style={style.icon}
         />
         <TextInput
+          selectionColor={COLORS.black}
           autoCorrect={false}
           onFocus={() => {
             onFocus();
@@ -62,13 +63,11 @@ const Input = ({
 
 const style = StyleSheet.create({
   view: {
-    marginBottom: 5,
-    marginVertical: -18,
+    flex: 1,
   },
   label: {
-    marginVertical: 5,
     fontSize: 14,
-    color: COLORS.grey,
+    color: COLORS.white,
   },
   inputContainer: {
     height: 51,
@@ -77,7 +76,8 @@ const style = StyleSheet.create({
     paddingHorizontal: 14,
     borderWidth: 0.5,
     borderRadius: 10,
-    opacity: 0.5,
+    // opacity: 0.5,
+    
   },
   icon: {
     color: COLORS.black, 

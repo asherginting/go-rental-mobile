@@ -1,27 +1,18 @@
-import React, {useState} from "react";
 import {
+  View,
+  Text,
+  StyleSheet,
   ImageBackground,
   StatusBar,
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Keyboard,
   ScrollView,
-  Alert,
 } from 'react-native';
-
-import COLORS from "./src/components/Colors";
-import Button from "./src/components/Button";
-import Input from "./src/components/Input";
+import React from 'react';
+import COLORS from "../components/Colors";
+import Input from '../components/Input';
+import Button from '../components/Button';
+import {useState} from 'react/cjs/react.development';
 
 const Signup = ({navigation}) => {
-  // <View style={styles.container}>
-  //   <StatusBar translucent backgroundColor='transparent' />
-  //   <ImageBackground source={require('./src/assets/images/bg-signup.png')} resizeMode="cover" style={styles.image}>
-  //   </ImageBackground>
-  // </View>
-
   const [input, setInput] = useState({
     username: '',
     email: '',
@@ -32,7 +23,6 @@ const Signup = ({navigation}) => {
   const [error, setError] = useState({});
 
   const validateForm = () => {
-    Keyboard.dismiss();
     let isValid = true;
   
     if (!input.username) {
@@ -87,20 +77,20 @@ const Signup = ({navigation}) => {
   const handleError = (error, input) => {
     setError(prevState => ({...prevState, [input]: error}));
   };
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar translucent backgroundColor='transparent' />
-      <ImageBackground source={require('./src/assets/images/bg-signup.png')} resizeMode="cover" style={styles.image}></ImageBackground>
-      <ScrollView
-        contentContainerStyle={{paddingTop: 50, paddingHorizontal: 29}}>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          LET'S HAVE
-        </Text>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          SOME RIDE
-        </Text>
 
-        <View style={{color: COLORS.black}}>
+  return (
+      <ScrollView style={styles.scrollview}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <ImageBackground
+        source={require('../assets/images/bg-signup.png')}
+        resizeMode="cover"
+        style={styles.image}>
+        <View style={styles.opacity}>
+          <View style={styles.header}>
+            <Text style={styles.head}>LET'S HAVE</Text>
+            <Text style={styles.head}>SOME RIDE</Text>
+          </View>
+          <View style={{color: COLORS.white}}>
           <Input
             onChangeText={text => handleOnchange(text, 'username')}
             onFocus={() => handleError(null, 'username')}
@@ -135,29 +125,57 @@ const Signup = ({navigation}) => {
             password
           />
           <Button title="Signup" onPress={validateForm} />
-          <Text
-            onPress={() => navigation.navigate('Login')}
-            style={{
-              color: COLORS.black,
-              // fontWeight: 'bold',
-              textAlign: 'center',
-              fontSize: 16,
-            }}>
-            Already have account ? Login
-          </Text>
+          <View style={styles.bottomText}>
+              <Text style={styles.text}>Already have account?</Text>
+              <Text style={[styles.text, styles.linklogin]}> Login now</Text>
+            </View>
         </View>
+      </View>
+      </ImageBackground>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollview: {
+    height: '100%',
   },
   image: {
-    flex: 1,
-    justifyContent: "center",
+    height: '100%',
+  },
+  opacity: {
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 20,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  header: {
+    marginVertical: 110,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  head: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 35,
+  },
+  bottomText: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 220,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ['text']: {
+    color: '#fff',
+  },
+  linklogin: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
+    width: 78,
+    fontWeight: 'bold',
   },
 });
 
