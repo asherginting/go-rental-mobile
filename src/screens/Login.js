@@ -11,9 +11,9 @@ import {
   Alert,
 } from 'react-native';
 
-import COLORS from "./src/components/Colors";
-import Button from "./src/components/Button";
-import Input from "./src/components/Input";
+import COLORS from "../components/Colors";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const Login = ({navigation}) => {
   // <View style={styles.container}>
@@ -71,7 +71,7 @@ const Login = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor='transparent' />
-      <ImageBackground source={require('./src/assets/images/bg-login.png')} resizeMode="cover" style={styles.image}></ImageBackground>
+      <ImageBackground source={require('../assets/images/bg-login.png')} resizeMode="cover" style={styles.image}></ImageBackground>
       <ScrollView
         contentContainerStyle={{paddingTop: 50, paddingHorizontal: 29}}>
         <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
