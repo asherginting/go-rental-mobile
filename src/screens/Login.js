@@ -5,6 +5,7 @@ import {
   ImageBackground,
   StatusBar,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import COLORS from "../components/Colors";
@@ -86,14 +87,18 @@ const Login = ({navigation}) => {
             password
           />
           <View style={styles.forgotText}>
+          <TouchableOpacity onPress={() => navigation.navigate('Forgot')}>
               <Text style={[styles.text, styles.linkForgot]}>Forgot Password? </Text>
+          </TouchableOpacity>
           </View>
           <View style={styles.loginButton}>
           <Button title="Login" onPress={validateForm} />
           </View>
           <View style={styles.bottomText}>
-              <Text style={styles.text}>Don’t have account?</Text>
+            <Text style={styles.text}>Don’t have account?</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
               <Text style={[styles.text, styles.linkSignup]}> Sign up now</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

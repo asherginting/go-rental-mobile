@@ -5,6 +5,7 @@ import {
   ImageBackground,
   StatusBar,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import COLORS from "../components/Colors";
@@ -78,6 +79,11 @@ const Signup = ({navigation}) => {
     setError(prevState => ({...prevState, [input]: error}));
   };
 
+  // const goToLogin = () => {
+  //   navigation.navigate('Login');
+  //   dispatch({type: 'AUTH_CLEAR_ERR'});
+  // };
+
   return (
       <ScrollView style={styles.scrollview}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -127,7 +133,9 @@ const Signup = ({navigation}) => {
           <Button title="Signup" onPress={validateForm} />
           <View style={styles.bottomText}>
               <Text style={styles.text}>Already have account?</Text>
-              <Text style={[styles.text, styles.linklogin]}> Login now</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <Text style={[styles.text, styles.linklogin]}> Login now</Text>
+              </TouchableOpacity>
             </View>
         </View>
       </View>
