@@ -1,38 +1,28 @@
-import React, {useState} from "react";
 import {
+  View,
+  Text,
+  StyleSheet,
   ImageBackground,
   StatusBar,
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Keyboard,
   ScrollView,
-  Alert,
+  TouchableOpacity,
 } from 'react-native';
+import React from 'react';
+import COLORS from "../components/Colors";
+import Input from '../components/Input';
+import Button from '../components/Button';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {useState} from 'react/cjs/react.development';
 
-import COLORS from "./src/components/Colors";
-import Button from "./src/components/Button";
-import Input from "./src/components/Input";
-
-const Forgot = ({navigation}) => {
-  // <View style={styles.container}>
-  //   <StatusBar translucent backgroundColor='transparent' />
-  //   <ImageBackground source={require('./src/assets/images/bg-signup.png')} resizeMode="cover" style={styles.image}>
-  //   </ImageBackground>
-  // </View>
-
+const Login = ({navigation}) => {
   const [input, setInput] = useState({
     username: '',
-    email: '',
-    phone_number: '',
     password: '',
   });
 
   const [error, setError] = useState({});
 
   const validateForm = () => {
-    Keyboard.dismiss();
     let isValid = true;
   
     if (!input.email) {
@@ -42,7 +32,7 @@ const Forgot = ({navigation}) => {
       handleError('Please, input a valid email!', 'email');
       isValid = false;
     }
-    
+  
     if (isValid) {
       register();
     }
@@ -58,30 +48,29 @@ const Forgot = ({navigation}) => {
   const handleError = (error, input) => {
     setError(prevState => ({...prevState, [input]: error}));
   };
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar translucent backgroundColor='transparent' />
-      <ImageBackground source={require('./src/assets/images/bg-forgot.png')} resizeMode="cover" style={styles.image}></ImageBackground>
-      <ScrollView
-        contentContainerStyle={{paddingTop: 50, paddingHorizontal: 29}}>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          THAT'S OKAY, WE
-        </Text>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          GOT YOUR BACK
-        </Text>
 
-        <View style={{color: COLORS.black}}>
-        <Text
-            onPress={() => navigation.navigate('Home')}
-            style={{
-              color: COLORS.black,
-              // fontWeight: 'bold',
-              textAlign: 'center',
-              fontSize: 14,
-            }}>
-            Enter your email to get reset password code
-          </Text>
+  return (
+      <ScrollView style={styles.scrollview}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <ImageBackground
+        source={require('../assets/images/bg-forgot.png')}
+        resizeMode="cover"
+        style={styles.image}>
+        <View style={styles.opacity}>
+          <View style={styles.header}>
+            <TouchableOpacity
+              style={styles.back}
+              onPress={() => navigation.goBack()}>
+              <Icon style={[styles.text, styles.icon]} name="left" size={25} />
+              <Text style={[styles.text, styles.textBack]}> Back</Text>
+            </TouchableOpacity>
+            <Text style={styles.head}>THAT’S OKAY, WE</Text>
+            <Text style={styles.head}>GOT YOUR BACK</Text>
+          </View>
+          <View style={{color: COLORS.white}}>
+          <View style={styles.headerText}>
+              <Text style={[styles.text,]}>Enter your email to get reset password code </Text>
+          </View>
           <Input
             keyboardType="email-address"
             onChangeText={text => handleOnchange(text, 'email')}
@@ -90,23 +79,86 @@ const Forgot = ({navigation}) => {
             placeholder="Enter your email address"
             error={error.email}
           />
-
+          <View style={styles.codeButton}>
           <Button title="Send Code" onPress={validateForm} />
+          </View>
+          <View style={styles.resendButton}>
           <Button title="Resend Code" onPress={validateForm} />
+          </View>
         </View>
+      </View>
+      </ImageBackground>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollview: {
+    height: '100%',
   },
   image: {
-    flex: 1,
-    justifyContent: "center",
+    height: '100%',
+  },
+  opacity: {
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 20,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  back: {
+    marginTop: -100,
+    marginBottom: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginEnd: 20,
+  },
+  textBack: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  header: {
+    marginVertical: 240,
+    marginBottom: 20,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  head: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 35,
+  },
+  headerText: {
+    flexDirection: 'row',
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginBottom: 220,
+  },
+  ['text']: {
+    color: '#fff',
+  },
+  codeButton: {
+    marginTop: 15,
+  },
+  resendButton: {
+    marginTop: -15,
+    marginBottom: 230,
+  },
+  linkForgot: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
+    width: 130,
+    marginTop: 10,
+  },
+  linkSignup: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
+    width: 90,
+    fontWeight: 'bold',
   },
 });
 
-export default Forgot;
+export default Login;
