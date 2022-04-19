@@ -7,8 +7,8 @@ import {NavigationContainer} from '@react-navigation/native';
 
 // import reduxStore from './src/redux/store';
 
-// import MainStackNav from './src/navigation/MainStackNav';
-import AuthStackNav from './src/navigation/AuthStackNav';
+import MainStackNav from './src/navigation/MainStackNav';
+// import AuthStackNav from './src/navigation/AuthStackNav';
 
 // import PushNotification from 'react-native-push-notification';
 
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <AuthStackNav />
+        <MainStackNav />
       </NativeBaseProvider>
     </NavigationContainer>
   );
