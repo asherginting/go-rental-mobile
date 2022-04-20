@@ -11,6 +11,9 @@ import Payment2 from '../screens/Payment2'
 import Payment3 from '../screens/Payment3'
 import PaymentFinish from '../screens/PaymentFinish'
 import AddVehicle from '../screens/AddVehicle'
+import ChatList from '../screens/ChatList'
+import Faq from '../screens/Faq'
+import Help from '../screens/Help'
 
 const MainStack = createNativeStackNavigator()
 
@@ -27,6 +30,9 @@ const MainStackNav = () => {
       <MainStack.Screen name="Payment3" component={Payment3} />
       <MainStack.Screen name='PaymentFinish' component={PaymentFinish} />
       <MainStack.Screen name='AddVehicle' component={AddVehicle} />
+      <MainStack.Screen name='ChatList' component={ChatList} />
+      <MainStack.Screen name='Faq' component={Faq} />
+      <MainStack.Screen name='Help' component={Help} />
     </MainStack.Navigator>
   )
 }

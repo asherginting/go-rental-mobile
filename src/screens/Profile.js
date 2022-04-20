@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import React from 'react';
 import { Image, Text } from 'native-base';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
@@ -9,21 +9,28 @@ const Profile = ({ navigation }) => {
   return (
     <View style={styles.main}>
       <View style={styles.header}>
+      <StatusBar translucent backgroundColor="transparent" />
         <Image
-          source={require('../assets/images/no-pp.jpg')}
+          source={require('../assets/images/header2.png')}
+          style={styles.headerImg}
+          alt="background-header"
+        />
+        <Image
+          source={require('../assets/images/no-pp.png')}
+          style={styles.profileImg}
           size={70}
           resizeMode={'contain'}
           borderRadius={'full'}
           alt="Picture-Profile"
         />
         <View style={styles.head}>
-          <Text bold fontSize="2xl">
+          <Text bold fontSize="2xl" color={'white'}>
             No Name
           </Text>
-          <Text bold>
+          <Text bold color={'white'}>
             noname@mail.com
           </Text>
-          <Text bold>
+          <Text bold color={'white'}>
             +62 8123 456 789
           </Text>
         </View>
@@ -74,6 +81,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
   },
+  headerImg: {
+    width: '100%',
+  },
+  profileImg: {
+    marginTop: -190,
+  },
   container: {
     padding: 30,
     flexDirection: 'column',
@@ -84,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     elevation: 40,
-    paddingVertical: 30,
+    // paddingVertical: 60,
   },
   list: {
     paddingVertical: 20,
