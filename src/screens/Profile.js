@@ -32,23 +32,27 @@ const Profile = ({ navigation }) => {
         <View>
           <TouchableOpacity style={styles.linkItem}
             onPress={() => navigation.navigate('Favorite')}>
-            <Text fontSize="xl">Your favorites</Text>
+              <FaIcon name="heart" size={25} color={'#0085DF'} />
+            <Text fontSize="xl" style={styles.txtProfile}>Your favorites</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.linkItem}
             onPress={() => navigation.navigate('Faq')}>
-            <Text fontSize="xl">FAQ</Text>
+              <FaIcon name="comment" size={25} color={'#0085DF'} />
+            <Text fontSize="xl" style={styles.txtFaq}>FAQ</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.linkItem}
           onPress={() => navigation.navigate('Help')}>
-            <Text fontSize="xl">Help</Text>
+            <FaIcon name="question-circle" size={25} color={'#0085DF'} />
+            <Text fontSize="xl" style={styles.txtHelp}>Help</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.linkItem}
             onPress={() => navigation.navigate('UpdateProfile')}>
-            <Text fontSize="xl">Update profile</Text>
+              <FaIcon name="edit" size={25} color={'#0085DF'} />
+            <Text fontSize="xl" style={styles.txtProfile}>Update profile</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
         </View>
@@ -77,21 +81,28 @@ const styles = StyleSheet.create({
     height: '50%',
   },
   header: {
-    // flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     elevation: 40,
-    // paddingHorizontal: 20,
     paddingVertical: 30,
   },
   list: {
     paddingVertical: 20,
   },
   linkItem: {
-    marginVertical: 25,
+    marginVertical: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  txtProfile: {
+    marginRight: 160,
+  },
+  txtHelp: {
+    marginRight: 250,
+  },
+  txtFaq: {
+    marginRight: 257,
   },
 });
 
