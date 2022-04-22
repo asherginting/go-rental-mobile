@@ -24,7 +24,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <AuthStackNav />
+        <MainStackNav />
       </NativeBaseProvider>
     </NavigationContainer>
   );
