@@ -40,7 +40,7 @@ const List = ({ image, name, seet, stock, price, ...set }) => {
               {stock} bikes left
             </Text>
           ) : (
-            <Text bold color="#49BEB7">
+            <Text bold color="#0085DF">
               Available
             </Text>
           )}
