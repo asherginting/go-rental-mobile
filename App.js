@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+
 import {NativeBaseProvider} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
-// import {Provider, useSelector} from 'react-redux';
-// import {PersistGate} from 'redux-persist/integration/react';
+
+import {Provider, useSelector} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 // import messaging from '@react-native-firebase/messaging';
 
-// import reduxStore from './src/redux/store';
+import reduxStore from './src/redux/store';
 
 import MainStackNav from './src/navigation/MainStackNav';
 import AuthStackNav from './src/navigation/AuthStackNav';
@@ -19,14 +21,28 @@ import AuthStackNav from './src/navigation/AuthStackNav';
 //   vibrate: true,
 // });
 
-const App = () => {
-  // const {auth} = useSelector(state => state);
+const Main = () => {
+  const { auth } = useSelector(state => state);
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <MainStackNav />
+        {/* <MainStackNav/> */}
+        {auth.token ? <MainStackNav /> : <AuthStackNav />}
       </NativeBaseProvider>
     </NavigationContainer>
+  );
+};
+
+const { store, persistor } = reduxStore();
+
+const App = () => {
+  
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Main />
+      </PersistGate>
+    </Provider>
   );
 };
 
