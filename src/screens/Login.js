@@ -7,11 +7,13 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import COLORS from "../components/Colors";
 import Input from '../components/Input';
 import Button from '../components/Button';
-import {useState} from 'react/cjs/react.development';
+
+import {authLogin} from '../redux/actions/auth';
 
 const Login = ({navigation}) => {
   const [input, setInput] = useState({
@@ -19,7 +21,51 @@ const Login = ({navigation}) => {
     password: '',
   });
 
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
   const [error, setError] = useState({});
+  const [isError, setIsError] = useState();
+
+  const dispatch = useDispatch();
+  const {auth, verify, signup} = useSelector(state => state);
+  useEffect(() => {
+    dispatch({
+      type: 'AUTH_CLEAR_ERR',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  const handleLogin = () => {
+    if (username && password) {
+      setIsError(false);
+      dispatch(authLogin(username, password));
+      dispatch({
+        type: 'AUTH_CLEAR_ERR',
+      });
+      dispatch({type: 'SIGNUP_CLEAR'});
+    } else {
+      setIsError(true);
+    }
+  };
+
+  const handleSignup = () => {
+    navigation.navigate('Signup');
+    setIsError(false);
+    dispatch({
+      type: 'AUTH_CLEAR_ERR',
+    });
+    dispatch({
+      type: 'SIGNUP_CLEAR',
+    });
+  };
+
+  const handleForgot = () => {
+    navigation.navigate('Forgot');
+    setIsError(false);
+    dispatch({
+      type: 'AUTH_CLEAR_ERR',
+    });
+  };
 
   const validateForm = () => {
     let isValid = true;
@@ -72,31 +118,35 @@ const Login = ({navigation}) => {
           </View>
           <View style={{color: COLORS.white}}>
           <Input
-            onChangeText={text => handleOnchange(text, 'username')}
+            // onChangeText={text => handleOnchange(text, 'username')}
+            onChangeText={setUsername}
             onFocus={() => handleError(null, 'username')}
             iconName="account-outline"
             placeholder="Enter your Username"
             error={error.username}
+            value={username}
           />
           <Input
-            onChangeText={text => handleOnchange(text, 'password')}
+            // onChangeText={text => handleOnchange(text, 'password')}
+            onChangeText={setPassword}
             onFocus={() => handleError(null, 'password')}
             iconName="lock-outline"
             placeholder="Enter your password"
             error={error.password}
             password
+            value={password}
           />
           <View style={styles.forgotText}>
-          <TouchableOpacity onPress={() => navigation.navigate('Forgot')}>
+          <TouchableOpacity onPress={handleForgot}>
               <Text style={[styles.text, styles.linkForgot]}>Forgot Password? </Text>
           </TouchableOpacity>
           </View>
           <View style={styles.loginButton}>
-          <Button title="Login" onPress={validateForm} />
+          <Button title="Login" onPress={handleLogin} />
           </View>
           <View style={styles.bottomText}>
             <Text style={styles.text}>Don’t have account?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+            <TouchableOpacity onPress={handleSignup}>
               <Text style={[styles.text, styles.linkSignup]}> Sign up now</Text>
             </TouchableOpacity>
           </View>
