@@ -19,6 +19,7 @@ export const authLogin = (username, password) => {
       let payload = '';
       if (err.response) {
         payload = err.response.data.message;
+        console.log(payload)
       } else {
         payload = err.message;
       }

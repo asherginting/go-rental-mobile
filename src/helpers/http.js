@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_URL from './AppApi';
 
 const http = token => {
   const headers = {};
@@ -6,9 +7,9 @@ const http = token => {
     headers.Authorization = `Bearer ${token}`;
   }
   return axios.create({
-    baseURL: '192.168.159.195:5000',
+    baseURL: API_URL,
     headers,
   });
 };
 
-export default http
+export default http;
