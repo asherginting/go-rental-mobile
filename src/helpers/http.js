@@ -1,10 +1,10 @@
 import axios from 'axios';
-const {API_URL} = process.env
+import API_URL from './AppApi';
 
 const http = token => {
   const headers = {};
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    headers.Authorization = `Bearer ${token}`;
   }
   return axios.create({
     baseURL: API_URL,
@@ -12,4 +12,4 @@ const http = token => {
   });
 };
 
-export default http
+export default http;
