@@ -1,12 +1,13 @@
 import axios from 'axios';
+const {API_URL} = process.env
 
 const http = token => {
   const headers = {};
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token}`;
   }
   return axios.create({
-    baseURL: '192.168.159.195:5000',
+    baseURL: API_URL,
     headers,
   });
 };
