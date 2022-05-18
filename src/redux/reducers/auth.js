@@ -1,33 +1,30 @@
 const initialState = {
   token: null,
-  isError: false,
-  errMessage: '',
+  isErr: false,
+  errMsg: '',
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case 'AUTH_LOGIN_LOADING': {
-      return {...state, isLoading: true};
-    }
-    case 'AUTH_LOGIN': {
-      state.token = action.payload;
-      return {...state, isLoading: false};
-    }
-    case 'AUTH_LOGOUT': {
-      return {...initialState};
-    }
-    case 'AUTH_ERROR': {
-      state.token = null;
-      state.isError = true;
-      state.errMessage = action.payload;
-      return {...state, isLoading: false};
-    }
-    case 'AUTH_CLEAR_ERR': {
-      return {...state, isError: false, errMessage: ''};
-    }
-    default: {
-      return {...state};
-    }
+      case 'AUTH_LOGIN': {
+          state.token = action.payload;
+          return {...state};
+      }
+      case 'AUTH_LOGOUT': {
+          return {...initialState};
+      }
+      case 'AUTH_ERROR': {
+          state.token = null;
+          state.isErr = true;
+          state.errMsg = action.payload;
+          return {...state};
+      }
+      case 'AUTH_CLEAR_ERR': {
+          return {...state, isErr: false, errMsg: ''};
+      }
+      default: {
+          return {...state};
+      }
   }
 };
 
