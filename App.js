@@ -13,6 +13,7 @@ import MainStackNav from './src/navigation/MainStackNav';
 import AuthStackNav from './src/navigation/AuthStackNav';
 
 import PushNotification from 'react-native-push-notification';
+import RNBootSplash from 'react-native-bootsplash';
 
 PushNotification.createChannel({
   channelId: 'transaction',
@@ -36,6 +37,7 @@ const { store, persistor } = reduxStore();
 
 const App = () => {
   
+  RNBootSplash.hide({fade: true});
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
