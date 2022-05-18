@@ -99,7 +99,7 @@ const Home = ({navigation}) => {
         <View style={styles.wrapperProduct}>
           <DetailTop
             // onPress={() => gotoDetail('car', car.results[0].idCategory)}
-            category="Car"
+            category="Cars"
           />
           <View>
             <FlatListSection
@@ -113,7 +113,7 @@ const Home = ({navigation}) => {
             // onPress={() =>
             //   gotoDetail('motorbike', motorbike.results[0].idCategory)
             // }
-            category="Motorbike"
+            category="Motorbikes"
           />
           <View>
             <FlatListSection
@@ -126,7 +126,7 @@ const Home = ({navigation}) => {
         <View style={styles.wrapperProduct}>
           <DetailTop
             // onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
-            category="Bike"
+            category="Bikes"
           />
           <View>
             <FlatListSection
