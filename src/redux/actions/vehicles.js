@@ -1,5 +1,5 @@
 import http from '../../helpers/http';
-import RNFetchBlob from 'rn-fetch-blob';
+// import RNFetchBlob from 'rn-fetch-blob';
 import API_URL from '../../helpers/AppApi';
 
 export const getCategory = (category, page = 1) => {
