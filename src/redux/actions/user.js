@@ -1,6 +1,6 @@
-import http from '../../helper/http';
-// import RNFetchBlob from 'rn-fetch-blob';
-import {API_URL} from '@env';
+import http from '../../helpers/http';
+import RNFetchBlob from 'rn-fetch-blob';
+import API_URL from '../../helpers/AppApi'
 
 export const getProfile = token => {
   return async dispatch => {
