@@ -40,6 +40,7 @@ const FlatListSection = ({dataList, onPress, navigation}) => {
     <FlatList
       data={dataList}
       horizontal={true}
+      showsHorizontalScrollIndicator={false}
       style={styles.flat}
       renderItem={({item, index}) => {
         if (index < 5) {
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
   },
   wrapperProduct: {
     padding: 20,
+    backgroundColor: '#F8F9FA',
   },
   topProduct: {
     justifyContent: 'space-between',
