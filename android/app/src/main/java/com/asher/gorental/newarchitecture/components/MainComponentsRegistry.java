@@ -1,4 +1,4 @@
-package com.gorental.newarchitecture.components;
+package com.asher.gorental.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

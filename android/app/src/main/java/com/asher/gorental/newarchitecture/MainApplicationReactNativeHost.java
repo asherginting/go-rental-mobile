@@ -1,4 +1,4 @@
-package com.gorental.newarchitecture;
+package com.asher.gorental.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.gorental.BuildConfig;
-import com.gorental.newarchitecture.components.MainComponentsRegistry;
-import com.gorental.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.asher.gorental.BuildConfig;
+import com.asher.gorental.newarchitecture.components.MainComponentsRegistry;
+import com.asher.gorental.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
