@@ -6,7 +6,8 @@ import {
   StyleSheet, 
   FlatList, 
   ScrollView, 
-  TouchableOpacity 
+  TouchableOpacity,
+  StatusBar, 
 } from 'react-native';
 import {Box} from 'native-base';
 import React, {useEffect, useState} from 'react';
@@ -91,6 +92,7 @@ const Home = ({navigation}) => {
 
   return (
     <View>
+      <StatusBar translucent backgroundColor="transparent" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ImageBackground
           source={require('../assets/images/header.png')}
