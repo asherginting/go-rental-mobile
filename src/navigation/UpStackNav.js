@@ -10,8 +10,16 @@ const Uptab = createMaterialTopTabNavigator()
 const UpStackNav = () => {
   return (
     <Uptab.Navigator >
-      <Uptab.Screen name='Chat' component={ChatList} />
-      <Uptab.Screen name='History' component={History} />
+      <Uptab.Screen name='Chat' component={ChatList}
+       options={{
+         tabBarStyle : {padding: 20, backgroundColor: '#F8F9FA'}
+       }}
+       />
+      <Uptab.Screen name='History' component={History}
+      options={{
+        tabBarStyle : {padding: 20, backgroundColor: '#F8F9FA'}
+      }}
+      />
     </Uptab.Navigator>
   )
 }
