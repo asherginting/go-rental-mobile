@@ -98,7 +98,7 @@ const Home = ({navigation}) => {
         </ImageBackground>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            onPress={() => gotoDetail('car', car.results[0].idCategory)}
+            // onPress={() => gotoDetail('car', car.results[0].idCategory)}
             category="Car"
           />
           <View>
@@ -110,9 +110,9 @@ const Home = ({navigation}) => {
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            onPress={() =>
-              gotoDetail('motorbike', motorbike.results[0].idCategory)
-            }
+            // onPress={() =>
+            //   gotoDetail('motorbike', motorbike.results[0].idCategory)
+            // }
             category="Motorbike"
           />
           <View>
@@ -125,7 +125,7 @@ const Home = ({navigation}) => {
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
+            // onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
             category="Bike"
           />
           <View>
