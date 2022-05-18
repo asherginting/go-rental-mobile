@@ -136,19 +136,6 @@ const Home = ({navigation}) => {
             />
           </View>
         </View>
-        {/* <View style={styles.wrapperProduct}>
-          <DetailTop
-            onPress={() => gotoDetail('pickup', pickup.results[0].idCategory)}
-            category="Pickup"
-          />
-          <View>
-            <FlatListSection
-              dataList={pickup.results}
-              // onPress={() => navigation.navigate('Order')}
-              navigation={navigation}
-            />
-          </View>
-        </View> */}
       </ScrollView>
     </View>
   );
