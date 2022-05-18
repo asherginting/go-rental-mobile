@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native'
+import {Text, Box,} from 'native-base';
 import React from 'react'
 
 const ChatList = () => {
   return (
-    <View>
-      <Text>Chat</Text>
-    </View>
+      <Box p="4" my="10">
+      <Text fontSize={'3xl'} textAlign="center" bold>
+        Chat
+      </Text>
+      </Box>
+    
   )
 }
 
