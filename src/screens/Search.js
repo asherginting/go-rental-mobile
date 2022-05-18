@@ -3,6 +3,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
 } from 'react-native'
 import { Text, Input } from 'native-base';
 import React, { useState } from 'react'
@@ -99,6 +100,7 @@ const Search = ({ navigation }) => {
 
   return (
     <View style={styles.mainWrapper}>
+      <StatusBar translucent backgroundColor="transparent" />
       <View style={styles.search}>
         <Input
           variant="unstyled"
