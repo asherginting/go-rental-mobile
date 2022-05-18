@@ -4,7 +4,6 @@ import HomeStackNav from './HomeStackNav'
 import UpStackNav from './UpStackNav'
 import Search from '../screens/Search'
 import Profile from '../screens/Profile'
-// import AddVehicle from '../screens/AddVehicle'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -22,10 +21,6 @@ const BottomStackNav = () => {
       <BottomTab.Screen options={{
         tabBarIcon: ({ focused, color, size }) => <><Icon name='magnify' color={color} size={30} /><Text>Search</Text></>
       }} name='Search' component={Search} />
-
-      {/* <BottomTab.Screen options={{
-        tabBarIcon: ({ focused, color, size }) => <><Icon name='plus-circle' color={color} size={30} /><Text>Add Item</Text></>
-      }} name='AddVehicle' component={AddVehicle} /> */}
 
       <BottomTab.Screen options={{
         tabBarIcon: ({ focused, color, size }) => <><Icon name='view-list' color={color} size={30} /><Text>List</Text></>
