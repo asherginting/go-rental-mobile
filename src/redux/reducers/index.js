@@ -10,7 +10,7 @@ import verify from './verify';
 import forgot from './forgot';
 import car from './cars';
 import bike from './bike';
-import motorBike from './motorBike';
+import motorbike from './motorbike';
 import detailCategory from './detailCategory';
 import filterVehicle from './filterVehicle';
 import detailVehicle from './detailVehicle';
@@ -45,7 +45,7 @@ const rootReducers = combineReducers({
   forgot,
   car,
   bike,
-  motorBike,
+  motorbike,
   detailCategory,
   filterVehicle,
   myOrder,
