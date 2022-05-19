@@ -1,6 +1,5 @@
 import { 
-  View, 
-  Text, 
+  View,  
   TextInput, 
   ImageBackground, 
   StyleSheet, 
@@ -19,6 +18,7 @@ import {getDetailCategory} from '../redux/actions/detailCategory';
 import {myOrder} from '../redux/actions/transaction';
 import {getProfile} from '../redux/actions/user';
 import Button from '../components/Button';
+import { Text } from 'native-base';
 
 const DetailTop = ({category, onPress}) => {
   return (
@@ -65,10 +65,10 @@ const FlatListSection = ({dataList, onPress, navigation}) => {
 };
 
 const Home = ({navigation}) => {
-  const [key, setKey] = useState();
+  const {profile} = useSelector(state => state);
 
   const dispatch = useDispatch();
-  const {car, motorbike, bike, auth, profile} = useSelector(
+  const {car, motorbike, bike, auth} = useSelector(
     state => state,
   );
 
@@ -84,12 +84,6 @@ const Home = ({navigation}) => {
     navigation.navigate('DetailCategory');
   };
 
-  const handleSearch = () => {
-    const dataFilter = {search: key};
-    dispatch(getFilter(dataFilter));
-    navigation.navigate('SearchList');
-  };
-
   return (
     <View>
       <StatusBar translucent backgroundColor="transparent" />
@@ -98,6 +92,14 @@ const Home = ({navigation}) => {
           source={require('../assets/images/header.png')}
           alt="home header"
           style={styles.image}>
+          <View style={styles.form}>
+          <Text bold fontSize="2xl" color={'white'}>
+            Welcome {profile.results.name || profile.results.username}
+          </Text>
+          <Text fontSize="md" color={'white'}>
+          book your vehicle, reservation now!!
+          </Text>
+          </View>
         </ImageBackground>
         <View style={styles.wrapperProduct}>
           <DetailTop
@@ -152,8 +154,10 @@ const styles = StyleSheet.create({
   form: {
     padding: 30,
     justifyContent: 'center',
-    marginTop: 45,
+    marginTop: 85,
     position: 'relative',
+    fontWeight: 'bold',
+    fontSize: 50,
   },
   input: {
     height: 60,
