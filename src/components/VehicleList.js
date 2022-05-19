@@ -30,7 +30,7 @@ const VehicleList = ({Image, name, seet, stock, price, ...set}) => {
           <Text>2.1 km from your location</Text>
           {stock <= 2 ? (
             <Text bold color="#d63031">
-              {stock} vehicles left
+              {stock} More Left
             </Text>
           ) : (
             <Text bold color="#0085DF">
