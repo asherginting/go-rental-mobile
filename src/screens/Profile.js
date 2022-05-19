@@ -48,6 +48,9 @@ const Profile = ({ navigation }) => {
         <View style={styles.head}>
           <Text bold fontSize="2xl" color={'white'}>
           {profile.results.name || profile.results.username}
+          <TouchableOpacity style={styles.editItem} onPress={() => navigation.navigate('UpdateProfile')}>
+          <FaIcon name="edit" size={20} color={'white'} />
+          </TouchableOpacity>
           </Text>
           <Text bold color={'white'}>
           {profile.results.email}
@@ -62,7 +65,7 @@ const Profile = ({ navigation }) => {
           <TouchableOpacity style={styles.linkItem}
             onPress={() => navigation.navigate('Favorite')}>
               <FaIcon name="heart" size={25} color={'#0085DF'} />
-            <Text fontSize="xl" style={styles.txtProfile}>Your favorites</Text>
+            <Text fontSize="xl" style={styles.txtProfile}>Your Favorites</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.linkItem}
@@ -75,13 +78,6 @@ const Profile = ({ navigation }) => {
           onPress={() => navigation.navigate('Help')}>
             <FaIcon name="question-circle" size={25} color={'#0085DF'} />
             <Text fontSize="xl" style={styles.txtHelp}>Help</Text>
-            <FaIcon name="chevron-right" size={15} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.linkItem}
-            onPress={() => navigation.navigate('UpdateProfile')}>
-              <FaIcon name="edit" size={25} color={'#0085DF'} />
-            <Text fontSize="xl" style={styles.txtProfile}>Update profile</Text>
             <FaIcon name="chevron-right" size={15} />
           </TouchableOpacity>
         </View>
@@ -119,7 +115,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     elevation: 40,
-    // paddingVertical: 60,
   },
   list: {
     paddingVertical: 20,
@@ -129,6 +124,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  editItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  favItem: {
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
   },
   txtProfile: {
     marginRight: 160,

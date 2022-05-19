@@ -233,7 +233,7 @@ const Order = ({navigation}) => {
                     <Icon
                       name={favorite ? 'heart' : 'heart-o'}
                       size={35}
-                      color={favorite ? 'red' : 'white'}
+                      color={favorite ? '#0085DF' : 'white'}
                     />
                   </TouchableOpacity>
                 </View>
