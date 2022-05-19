@@ -101,7 +101,7 @@ const Home = ({navigation}) => {
         </ImageBackground>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            // onPress={() => gotoDetail('car', car.results[0].idCategory)}
+            onPress={() => gotoDetail('car', car.results[0].idCategory)}
             category="Cars"
           />
           <View>
@@ -113,28 +113,28 @@ const Home = ({navigation}) => {
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            // onPress={() =>
-            //   gotoDetail('motorbike', motorbike.results[0].idCategory)
-            // }
+            onPress={() =>
+              gotoDetail('motorbike', motorbike.results[0].idCategory)
+            }
             category="Motorbikes"
           />
           <View>
             <FlatListSection
               dataList={motorbike.results}
-              // onPress={() => navigation.navigate('Order')}
+              onPress={() => navigation.navigate('Order')}
               navigation={navigation}
             />
           </View>
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            // onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
+            onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
             category="Bikes"
           />
           <View>
             <FlatListSection
               dataList={bike.results}
-              // onPress={() => navigation.navigate('Order')}
+              onPress={() => navigation.navigate('Order')}
               navigation={navigation}
             />
           </View>
