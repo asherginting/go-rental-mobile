@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import { Box, Text } from 'native-base';
 import Stepper from '../components/Stepper';
-import InputPayment from '../components/InputPayment';
+import Input from '../components/Input';
 import { Picker } from '@react-native-picker/picker';
 import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,7 @@ const Payment = () => {
   const [selectPayment, setSelectPayment] = useState();
   const [isSelect, setIsSelect] = useState(false);
   const navigation = useNavigation()
-  const payment = ['OVO', 'Dana', 'Virtual Account'];
+  const payment = ['Go-Pay', 'Cash', 'Paylater'];
 
   return (
     <Box p={'3'}>
@@ -27,25 +27,25 @@ const Payment = () => {
         <Box py={'10'}>
           <Stepper currentlyActive={1} />
         </Box>
-        <Box py="2">
-          <InputPayment placeholder="ID card Number" type="number-pad" />
+        <Box>
+          <Input placeholder="ID card Number" type="number-pad" />
         </Box>
-        <Box py="2">
-          <InputPayment placeholder="Name" />
+        <Box>
+          <Input placeholder="Name" />
         </Box>
-        <Box py="2">
-          <InputPayment
+        <Box>
+          <Input
             placeholder="Mobile phone (must be active)"
             type="phone-pad"
           />
         </Box>
-        <Box py="2">
-          <InputPayment placeholder="Email address" type="email-address"  />
+        <Box>
+          <Input placeholder="Email address" type="email-address"  />
         </Box>
-        <Box py="2">
-          <InputPayment placeholder="Location (home, office, set)" />
+        <Box>
+          <Input placeholder="Location (home, office, set)" />
         </Box>
-        <Box py="2">
+        <Box>
           <Picker
             style={styles.picker}
             selectedValue={selectPayment}
@@ -56,7 +56,7 @@ const Payment = () => {
             {!isSelect && (
               <Picker.Item
                 style={styles.item}
-                label="Payment type"
+                label="Select Payment"
                 color="gray"
               />
             )}
@@ -71,7 +71,7 @@ const Payment = () => {
             ))}
           </Picker>
         </Box>
-        <Box pt={'100'}>
+        <Box pt={'50'}>
           <Button
             title= "See Order Details"
             color="secondary"
@@ -87,10 +87,11 @@ const Payment = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
+    marginTop: 40,
   },
   picker: {
     height: 60,
-    backgroundColor: 'rgba(178, 190, 195,0.3)',
+    // backgroundColor: 'rgba(178, 190, 195,0.3)',
     borderRadius: 40,
     fontSize: 20,
     paddingHorizontal: 15,

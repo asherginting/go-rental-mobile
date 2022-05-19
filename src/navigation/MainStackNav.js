@@ -15,6 +15,8 @@ import ChatList from '../screens/ChatList'
 import Faq from '../screens/Faq'
 import Help from '../screens/Help'
 import Order from '../screens/Order'
+import History from '../screens/History'
+
 
 const MainStack = createNativeStackNavigator()
 
@@ -35,6 +37,7 @@ const MainStackNav = () => {
       <MainStack.Screen name='Faq' component={Faq} />
       <MainStack.Screen name='Help' component={Help} />
       <MainStack.Screen name='Order' component={Order} />
+      <MainStack.Screen name='History' component={History} />
     </MainStack.Navigator>
   )
 }
