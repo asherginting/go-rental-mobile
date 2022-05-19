@@ -1,11 +1,12 @@
 import { View, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Image, Text } from 'native-base';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import Button from '../components/Button';
 
 const Profile = ({ navigation }) => {
+  const [errImg, setErrImg] = useState(false);
   const {profile} = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -28,22 +29,31 @@ const Profile = ({ navigation }) => {
           alt="background-header"
         />
         <Image
-          source={require('../assets/images/no-pp.png')}
+          size={69}
           style={styles.profileImg}
-          size={70}
           resizeMode={'contain'}
-          borderRadius={'full'}
-          alt="Picture-Profile"
+          borderRadius={200}
+          source={
+            profile.results?.image
+              ? errImg
+                ? require('../assets/images/no-pp.png')
+                : {
+                    uri: profile.results.image,
+                  }
+              : require('../assets/images/no-pp.png')
+          }
+          alt="Photo profile"
+          onError={setErrImg}
         />
         <View style={styles.head}>
           <Text bold fontSize="2xl" color={'white'}>
-            No Name
+          {profile.results.name || profile.results.username}
           </Text>
           <Text bold color={'white'}>
-            noname@mail.com
+          {profile.results.email}
           </Text>
           <Text bold color={'white'}>
-            +62 8123 456 789
+          {profile.results.phoneNumber}
           </Text>
         </View>
       </View>
