@@ -1,52 +1,71 @@
 import { View, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text } from 'native-base';
+import {useDispatch, useSelector} from 'react-redux';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import Stepper from '../components/Stepper';
 import Button from '../components/Button';
+import moment from 'moment';
+import {addHistory} from '../redux/actions/history';
 import PriceFormat from '../helpers/PriceFormat';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import PushNotification from 'react-native-push-notification'
-import { useDispatch, useSelector } from 'react-redux';
 // import { inputTransaction } from '../redux/actions/transaction';
 
-const Payment3 = () => {
+const Payment3 = ({navigation}) => {
+  const dispatch = useDispatch();
 
-  // const { transaction } = useSelector(state => state)
-  // const { auth } = useSelector(state => state)
-  // const { detail } = useSelector(state => state)
-  // const dispatch = useDispatch()
+  const {
+    transactionCode,
+    detailOrder,
+    addHistory: addHistoryState,
+    auth,
+    detailVehicle,
+    profile,
+  } = useSelector(state => state);
+  const endDate = moment(
+    moment(detailOrder.startDate).add(detailOrder.totalDay, 'days'),
+  ).format('MMM DD YYYY');
+  const rendEndDate = moment(
+    moment(detailOrder.startDate).add(detailOrder.totalDay, 'days'),
+  ).format('YYYY-MM-DD');
+  // eslint-disable-next-line prettier/prettier
+  const totalPrice = detailVehicle.results.price * detailOrder.totalDay * detailOrder.qty;
 
-  const dataOrder = {
-    qty: 20,
-    name: `test`,
-    perpayment: 'no tax',
-    days: `10 days`,
-    rentStartDate: '2022-02-02',
-    rentEndDate: '2022-02-05',
-    price: 10,
-  }
+  useEffect(() => {
+    dispatch({
+      type: 'CLEAR_ADD_HISTORY',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const price = dataOrder.price * dataOrder.days * dataOrder.qty
+  useEffect(() => {
+    // if (addHistoryState.isSuccess) {
+      navigation.navigate('PaymentFinish');
+      // PushNotification.localNotification({
+      //   channelId: 'transaction',
+      //   message: `Your payment has been successful! ${detailVehicle.results.brand}`,
+      //   title: 'Payment Suceess!',
+      //   soundName: 'default',
+      //   vibrate: true,
+      // });
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addHistoryState.isSuccess, detailVehicle.results.brand, navigation]);
 
-  const inputData = {
-    userId: 10,
-    vehicleId: 10,
-    rentStartDate: `2022-02-02`,
-    rentEndDate: `2022-02-05`,
-    prepayment: price,
-    isReturned: 1
-  }
-  const paymentFinish = () => {
-    dispatch(inputTransaction(auth.token, inputData))
-    PushNotification.localNotification({
-      channelId: 'payment',
-      title: 'Payment Success!',
-      message: 'Your vehicle is waiting for you!'
-    })
-    navigation.navigate('FinishedPayment')
-  }
-  const navigation = useNavigation()
+  const handleSubmit = () => {
+    dispatch(
+      addHistory(
+        profile.results.idUser,
+        detailVehicle.results.idVehicle,
+        moment(detailOrder.startDate).format('YYYY-MM-DD'),
+        rendEndDate,
+        totalPrice,
+        auth.token,
+      ),
+    );
+  };
+
   return (
     <Box p="5">
       <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
@@ -67,54 +86,64 @@ const Payment3 = () => {
             Payment Code:
           </Text>
           <Text py="4" fontSize={'4xl'} bold>
-            9075632
+          {transactionCode.paymentCode}
           </Text>
-          <Text>Insert your payment code while you transfer booking order</Text>
+          <Text>Insert your payment code to transfer booking order</Text>
           <Text>Pay before:</Text>
           <Text fontSize={'2xl'} py="5" color="red.700" bold>
-            06:12:17
+            23:59:99
           </Text>
           <Text fontSize="md" color="gray.500" bold>
-            Bank account information:
+            Bank Account Information:
           </Text>
-          <Text fontSize={'2xl'} py="5" bold>
+          <Text fontSize={'2xl'} bold>
             1234-5678-9011
           </Text>
+          <Text fontSize={'xl'} bold>
+            PT. Go Rental Indonesia
+          </Text>
           <Text fontSize="md" color="gray.500" bold>
-            {/* {detail.vehicle?.name} {detail.vehicle?.loc} */}
+          Order : {detailVehicle.results.brand}{' '}
+          </Text>
+          <Text fontSize="md" color="gray.500"bold>
+          Location : {detailVehicle.results.location}
           </Text>
           <Box py="5" style={styles.borderBtm} />
           <Text fontSize={'md'} pt="5" bold>
             Booking code:{' '}
             <Text color="success.700" fontSize="lg">
-              GR991114
+            {transactionCode.bookingCode}
             </Text>
           </Text>
-          {/* <Text>Use your booking code to pick your {detail.vehicle?.name}</Text> */}
-          <Box style={{ marginBottom: 15 }}>
-            <Button fontSize={15} color={'primary'}>
-              Copy payment & Booking Code
-            </Button>
-          </Box>
+          <Text>Use your booking code to pick your {detailVehicle.results.brand}</Text>
+          <Button
+          title="Copy Payment & Booking Code"
+          color="secondary">
+          Finish Payment
+        </Button>
         </Box>
         <Box>
           <Text fontSize={'lg'}>Order Details:</Text>
           <Text fontSize={'lg'}>
-            {dataOrder.qty} {dataOrder.name}
+            {detailOrder.qty} {detailVehicle.results.brand}
           </Text>
           <Text fontSize={'lg'}>Prepayment (no tax)</Text>
           <Text fontSize={'lg'}>
-            {dataOrder.days} {dataOrder.days > 1 ? 'Days' : 'Day'}
+          {detailOrder.totalDay} {detailOrder.totalDay > 1 ? 'Days' : 'Day'}
           </Text>
           <Text fontSize={'lg'}>Order Details:</Text>
           <Text fontSize={'lg'}>
-            {dataOrder.rentStartDate} to {dataOrder.rentEndDate}
+          {moment(detailOrder.startDate).format('MMM DD YYYY')} to {endDate}
           </Text>
           <Box py="5" style={styles.borderBtm} />
         </Box>
         <Box py="5" flexDirection={'row'} justifyContent="space-between">
           <Text fontSize={'3xl'} bold>
-            {PriceFormat(dataOrder.price * dataOrder.days * dataOrder.qty)}
+          {PriceFormat(
+              detailVehicle.results.price *
+                detailOrder.totalDay *
+                detailOrder.qty,
+            )}
           </Text>
           <TouchableOpacity>
             <EntypoIcon name="info-with-circle" size={30} color="#d2dae2" />
@@ -123,7 +152,7 @@ const Payment3 = () => {
         <Button
           title="Finish Payment"
           color="secondary"
-          onPress={paymentFinish}>
+          onPress={handleSubmit}>
           Finish Payment
         </Button>
         <Box mb={'20'} />
@@ -136,6 +165,7 @@ const styles = StyleSheet.create({
   back: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 40,
   },
   borderBtm: {
     borderBottomColor: 'gray',
@@ -144,4 +174,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Payment3
+export default Payment3;
