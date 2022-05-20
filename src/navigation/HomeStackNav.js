@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Home from '../screens/Home'
-import Filter from '../screens/SearchList'
+import Filter from '../screens/Filter'
 import Category from '../screens/DetailCategory'
 
 const HomeStack = createNativeStackNavigator()
