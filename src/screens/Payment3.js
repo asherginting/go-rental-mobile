@@ -40,20 +40,21 @@ const Payment3 = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    // if (addHistoryState.isSuccess) {
-      navigation.navigate('PaymentFinish');
-      // PushNotification.localNotification({
-      //   channelId: 'transaction',
-      //   message: `Your payment has been successful! ${detailVehicle.results.brand}`,
-      //   title: 'Payment Suceess!',
-      //   soundName: 'default',
-      //   vibrate: true,
-      // });
-    // }
+    if (addHistoryState.isSuccess) {
+      
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addHistoryState.isSuccess, detailVehicle.results.brand, navigation]);
 
   const handleSubmit = () => {
+    navigation.navigate('PaymentFinish');
+    PushNotification.localNotification({
+      channelId: 'transaction',
+      message: `Yeay! payment success for ${detailVehicle.results.brand}`,
+      title: 'Payment Suceess!',
+      soundName: 'default',
+      vibrate: true,
+    });
     dispatch(
       addHistory(
         profile.results.idUser,
