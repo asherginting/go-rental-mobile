@@ -7,9 +7,10 @@ import Input from '../components/Input';
 import { Picker } from '@react-native-picker/picker';
 import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const Payment = () => {
-  
+  const {profile} = useSelector(state => state);
   const [selectPayment, setSelectPayment] = useState();
   const [isSelect, setIsSelect] = useState(false);
   const navigation = useNavigation()
@@ -28,22 +29,20 @@ const Payment = () => {
           <Stepper currentlyActive={1} />
         </Box>
         <Box>
-          <Input placeholder="ID card Number" type="number-pad" />
-        </Box>
-        <Box>
-          <Input placeholder="Name" />
+          <Input placeholder="Name" value={profile.results.name || profile.results.username} />
         </Box>
         <Box>
           <Input
             placeholder="Mobile phone (must be active)"
             type="phone-pad"
+            value={profile.results.phoneNumber}
           />
         </Box>
         <Box>
-          <Input placeholder="Email address" type="email-address"  />
+          <Input placeholder="Email address" type="email-address"value={profile.results.email} />
         </Box>
         <Box>
-          <Input placeholder="Location (home, office, set)" />
+          <Input placeholder="Location (home, office, set)"/>
         </Box>
         <Box>
           <Picker

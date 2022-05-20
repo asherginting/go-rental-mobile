@@ -104,21 +104,20 @@ const Search = ({ navigation }) => {
       <View style={styles.search}>
         <Input
           variant="unstyled"
-          placeholder="Search.."
+          placeholder="Search Vehicle"
           placeholderTextColor="black"
           value={search}
           onChange={setSearch}
-          InputLeftElement={<Icons name='search' color='black' size={16} style={{ marginLeft: 17 }} />}
+          InputLeftElement={<Icons name='search' color='black' size={20} style={{ marginLeft: 5 }} />}
           InputRightElement={search !== '' ? <TouchableOpacity onPress={() => setSearch('')}><Icons name='remove' color='black' size={11} style={{ marginRight: 19 }} /></TouchableOpacity> : <></>}
         />
-        <Icon name="caretdown" size={15} />
       </View>
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.filter}
           onPress={() => navigation.navigate('Filter')}>
           <Icon name="filter" color='black' size={30} />
-          <Text>Filter Search</Text>
+          <Text>Filter</Text>
         </TouchableOpacity>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -143,6 +142,7 @@ const Search = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainWrapper: {
     marginBottom: 120,
+    marginTop: 50,
   },
   container: {
     padding: 20,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 19,
     paddingHorizontal: 20,
-    paddingTop: 20
+    padding: 10,
   },
   filter: {
     flexDirection: 'row',

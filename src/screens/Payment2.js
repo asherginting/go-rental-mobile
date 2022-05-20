@@ -89,7 +89,7 @@ const Payment2 = ({navigation}) => {
           <Text py={'1'}>
           {detailOrder.qty} {detailVehicle.results.brand}
           </Text>
-          <Text py={'1'}>{paymentForm.payment}</Text>
+          <Text py={'1'}>Prepayment (no tax)</Text>
           <Text py={'1'}>
           {detailOrder.totalDay} {detailOrder.totalDay === 1 ? 'day' : 'days'}
           </Text>

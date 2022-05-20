@@ -51,7 +51,7 @@ const FlatListSection = ({dataList, onPress, navigation}) => {
                 source={
                   item.image
                     ? {uri: item.image.replace(/localhost/g, '192.168.247.222')}
-                    : require('../assets/images/header.png')
+                    : require('../assets/images/no-image.jpg')
                 }
                 style={styles.imgProduct}
                 resizeMode="cover"
@@ -85,64 +85,52 @@ const Home = ({navigation}) => {
   };
 
   return (
-    <View>
-      <StatusBar translucent backgroundColor="transparent" />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <ImageBackground
-          source={require('../assets/images/header.png')}
-          alt="home header"
-          style={styles.image}>
-          <View style={styles.form}>
-          <Text bold fontSize="2xl" color={'white'}>
-            Welcome {profile.results.name || profile.results.username}
-          </Text>
-          <Text fontSize="md" color={'white'}>
+      <><StatusBar translucent backgroundColor="transparent" /><ImageBackground
+      source={require('../assets/images/header2.png')}
+      alt="home header"
+      style={styles.image}>
+      <View style={styles.form}>
+        <Text bold fontSize="2xl" color={'white'} textAlign={'center'}>
+          Welcome {profile.results.name || profile.results.username}
+        </Text>
+        <Text fontSize="md" color={'white'} textAlign={'center'}>
           book your vehicle, reservation now!!
-          </Text>
-          </View>
-        </ImageBackground>
+        </Text>
+      </View>
+    </ImageBackground><ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapperProduct}>
           <DetailTop
             onPress={() => gotoDetail('car', car.results[0].idCategory)}
-            category="Cars"
-          />
+            category="Cars" />
           <View>
             <FlatListSection
               dataList={car.results}
-              navigation={navigation}
-            />
+              navigation={navigation} />
           </View>
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
-            onPress={() =>
-              gotoDetail('motorbike', motorbike.results[0].idCategory)
-            }
-            category="Motorbikes"
-          />
+            onPress={() => gotoDetail('motorbike', motorbike.results[0].idCategory)}
+            category="Motorbikes" />
           <View>
             <FlatListSection
               dataList={motorbike.results}
               onPress={() => navigation.navigate('Order')}
-              navigation={navigation}
-            />
+              navigation={navigation} />
           </View>
         </View>
         <View style={styles.wrapperProduct}>
           <DetailTop
             onPress={() => gotoDetail('bike', bike.results[0].idCategory)}
-            category="Bikes"
-          />
+            category="Bikes" />
           <View>
             <FlatListSection
               dataList={bike.results}
               onPress={() => navigation.navigate('Order')}
-              navigation={navigation}
-            />
+              navigation={navigation} />
           </View>
         </View>
-      </ScrollView>
-    </View>
+      </ScrollView></>
   );
 };
 
@@ -153,9 +141,9 @@ const styles = StyleSheet.create({
   },
   form: {
     padding: 30,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     marginTop: 85,
-    position: 'relative',
+    // position: 'relative',
     fontWeight: 'bold',
     fontSize: 50,
   },
